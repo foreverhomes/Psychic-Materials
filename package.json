@@ -1,0 +1,41 @@
+{
+  "name": "MiniMedSim",
+  "version": "0.0.1",
+  "description": "MiniMedSim",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "event-stream": "^3.3.2",
+    "foundation-sites": "^6.0.5",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-cache": "^0.4.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-vendor": "0.0.4",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-order": "^1.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-uglify": "^1.5.1",
+    "main-bower-files": "^2.9.0"
+  },
+  "dependencies": {}
+}

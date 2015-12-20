@@ -1,0 +1,43 @@
+/* ==========================================================================
+   iPhone 5 considerations
+   ========================================================================== */
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) and (device-aspect-ratio: 40/71){
+    html, body {
+        font-size: 77.3%; /* 414px/375px = 85.333%. 375px is the width of the iPhone 6 which we will use here as the base font size. */
+    }
+}
+
+/* ==========================================================================
+   iPhone 6 considerations
+   ========================================================================== */
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) {
+    html, body {
+        font-size: 90.58%; /* 414px/375px = 110.4%. 375px is the width of the iPhone 6 which we will use here as the base font size. */
+    } 
+}
+
+/* ==========================================================================
+   iPhone 6+ considerations
+   ========================================================================== */
+
+@media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : portrait)  and (-webkit-device-pixel-ratio: 3) {
+    
+    
+
+}
+
+/* ==========================================================================
+   Galaxy S4 (and possibly Nexus 5)
+   ========================================================================== */
+
+
+@media only screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+
+}
+
+/* Nexus 4? */
+@media screen and (device-width: 384px) and (device-height: 592px) and (-webkit-device-pixel-ratio: 2) {
+
+}

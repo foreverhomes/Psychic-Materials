@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Casey Mecija -- Psychic Materials</title>
+    <link rel="stylesheet" href="assets/css/styles.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Poly:400,400italic' rel='stylesheet' type='text/css'>
+    <script>
+      // if ('registerElement' in document
+      //   && 'createShadowRoot' in HTMLElement.prototype
+      //   && 'import' in document.createElement('link')
+      //   && 'content' in document.createElement('template')) {
+      //   // We're using a browser with native WC support!
+      // } else {
+      //   document.write('<script src="https:\/\/cdnjs.cloudflare.com/ajax/libs/polymer/0.3.4/platform.js"><\/script>')
+      // }
+    </script>
+    <link rel="import" href="assets/js/x-gif.html">
+    
+  </head>
+  <body ng-app="pm" ng-controller="pmCtrl">
+
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+        <aside class="left-off-canvas-menu">
+            <a class="button exit-off-canvas"><span>&times;</span></a>
+            <ul>
+                <li><a class="navigation" data-load-page="1"><span>Home</a></li>
+                <li><a class="navigation" data-load-page="2"><span>My Contact Information</span></a></li>
+                <li><a class="navigation" data-load-page="3"><span>Patient Resource Links</span></a></li>
+                <li><a class="navigation" data-load-page="4"><span>Important Safety Information</span></a></li>
+                <!-- <li><a class="navigation" data-load-page="5"><span>Important Safety Information</span></a></li> -->
+            </ul>
+        </aside>
+
+
+        <div class="content">
+            <div class="track">
+                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="160" stopped></x-gif>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3>Palms Lose</h3>
+                    </div>
+                </div>
+                <audio loop>
+                  <source src="audio/palms_lose.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+
+            
+                    
+      </div> <!-- inner wrap -->
+
+    </div> <!-- off canvas wrap -->
+
+
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/x-gif.angular.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // $(document).foundation();
+      // FastClick.attach(document.body);
+    </script>
+  </body>
+</html>

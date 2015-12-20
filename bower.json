@@ -1,0 +1,16 @@
+{
+  "name": "Medtronic MiniMed 630g Scenario Simulator",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.3",
+    "detectizr": "~2.2.0",
+    "angular": "~1.4.8",
+    "x-gif": "~0.1.1"
+  }
+}
