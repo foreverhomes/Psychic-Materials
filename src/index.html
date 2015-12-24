@@ -6,53 +6,58 @@
     <title>Casey Mecija -- Psychic Materials</title>
     <link rel="stylesheet" href="assets/css/styles.min.css" />
     <link href='https://fonts.googleapis.com/css?family=Poly:400,400italic' rel='stylesheet' type='text/css'>
-    <script>
-      // if ('registerElement' in document
-      //   && 'createShadowRoot' in HTMLElement.prototype
-      //   && 'import' in document.createElement('link')
-      //   && 'content' in document.createElement('template')) {
-      //   // We're using a browser with native WC support!
-      // } else {
-      //   document.write('<script src="https:\/\/cdnjs.cloudflare.com/ajax/libs/polymer/0.3.4/platform.js"><\/script>')
-      // }
-    </script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
     <link rel="import" href="assets/js/x-gif.html">
     
   </head>
-  <body ng-app="pm" ng-controller="pmCtrl">
+  <body>
 
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
+    <div class="tracks-wrap">
 
-        <aside class="left-off-canvas-menu">
-            <a class="button exit-off-canvas"><span>&times;</span></a>
-            <ul>
-                <li><a class="navigation" data-load-page="1"><span>Home</a></li>
-                <li><a class="navigation" data-load-page="2"><span>My Contact Information</span></a></li>
-                <li><a class="navigation" data-load-page="3"><span>Patient Resource Links</span></a></li>
-                <li><a class="navigation" data-load-page="4"><span>Important Safety Information</span></a></li>
-                <!-- <li><a class="navigation" data-load-page="5"><span>Important Safety Information</span></a></li> -->
-            </ul>
-        </aside>
+        <audio>
+          <source src="audio/palms_lose.mp3" type="audio/mpeg">
+        </audio>
 
+        <header>
+          Casey Mecija -- Psychic Materials <a class="fa fa-backward disabled"></a><a class="fa fa-play play-button"></a><a class="fa fa-forward"></a>
+        </header>
 
-        <div class="content">
-            <div class="track">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="160" stopped></x-gif>
+        <div class="tracks-content">
+            <div class="track current">
+                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped></x-gif>
                 <div class="track-data">
                     <div class="track-data-items">
                         <h3>Palms Lose</h3>
+                        <div class="soundcloud-logo"></div>
                     </div>
                 </div>
-                <audio loop>
-                  <source src="audio/palms_lose.mp3" type="audio/mpeg">
-                </audio>
+                
+            </div>
+
+            <div class="track current">
+                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped></x-gif>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3>Palms Lose</h3>
+                        <div class="soundcloud-logo"></div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="track current">
+                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped></x-gif>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3>Palms Lose</h3>
+                        <div class="soundcloud-logo"></div>
+                    </div>
+                </div>
+                
             </div>
         </div>
 
-            
-                    
-      </div> <!-- inner wrap -->
+
 
     </div> <!-- off canvas wrap -->
 
