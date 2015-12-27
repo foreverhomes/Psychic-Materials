@@ -348,15 +348,26 @@ body, p, h1, h2, h3, h4, ul, li {
    ========================================================================== */
 
 header {
+
     background-color: #000;
     padding: 0.5em;
     margin-bottom: 1em;
     color: #fff;
     font-style: italic;
 
+    h1 {
+        display: inline-block;
+        font-size: 1em;
+        color: #fff;
+        font-style: italic;
+        margin: 0 1em 0 0;
+        padding-right: 1em;
+        border-right: 1px solid #fff;
+
+    }
+
     a {
         color: #fff;
-        margin-right: 1em;
 
         &.disabled {
             opacity: 0.5;
@@ -370,9 +381,9 @@ $track-width: 600px;
     width: 100%;
     overflow: hidden;
 
-    .tracks-content {
+    #tracks-content {
         width: 4800px;
-        transition: all 1000ms ease-out;
+        transition: all 600ms cubic-bezier(0.29, 0.49, 0, 1);
 
         &.track-2 {
             transform: translateX(-$track-width);
@@ -383,7 +394,23 @@ $track-width: 600px;
         }
 
         &.track-4 {
-            transform: translateX(-1800px);
+            transform: translateX(-(4 * $track-width));
+        }
+
+        &.track-5 {
+            transform: translateX(-(5 * $track-width));
+        }
+
+        &.track-6 {
+            transform: translateX(-(6 * $track-width));
+        }
+
+        &.track-7 {
+            transform: translateX(-(7 * $track-width));
+        }
+
+        &.track-8 {
+            transform: translateX(-(8 * $track-width));
         }
     }
 }
@@ -412,16 +439,16 @@ h3 {
         height: 100%;
         top: 0;
         left: 0;
-        transition: 200ms all ease-out;
+        transition: 200ms all cubic-bezier(0.29, 0.49, 0, 1);
 
         .track-data-items {
-            transition: 200ms all ease-out;
+            transition: 200ms all cubic-bezier(0.29, 0.49, 0, 1);
             padding-top: 430px;
             padding-left: 20px;
 
             h3 {
                 color: #fff;
-                transition: 200ms all ease-out;
+                transition: 200ms all cubic-bezier(0.29, 0.49, 0, 1);
             }
         }
 
