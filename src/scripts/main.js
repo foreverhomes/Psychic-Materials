@@ -14,7 +14,10 @@ $('document').ready(function() {
 	var fwdButton = $('.fwd-button');
 	var backButton = $('.back-button');
 	var tracksContent = $('#tracks-content');
+	var progress = $('.progress');
 	var tracks = [];
+
+	var wasPlaying = false;
 
 	// construct tracks array from .track nodes
 	$.each($('.track'), function(index, track) {
@@ -24,24 +27,27 @@ $('document').ready(function() {
 		}
 		tracks.push(newTrack);
 
-		$(this).find('.soundcloud-link').attr("src", $(track).attr("data-share-url"))
+		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"))
 	});
 
 	var trackEnded = function() {
-		console.log('track ended');
+		if(currentTrack < 8) {
+			fwdButton.trigger('click');
+		}
 	};
 
 	var timeUpdated = function(thing, stuff) {
 		var currentTime = audioPlayer.currentTime();
-		console.log(Math.round(currentTime/audioPlayer.streamInfo.duration * 100))
+		var pct = Math.round(currentTime/audioPlayer.streamInfo.duration * 100);
+		progress.css('width', pct+'%');
 	};
 
 	var playStart = function() {
-		console.log('started playing');
+		wasPlaying = true;
 	};
 
 	var paused = function() {
-		console.log('paused');
+		wasPlaying = false;
 	};
 
 	var playOrPause = function() {
@@ -54,12 +60,14 @@ $('document').ready(function() {
 
 			if(playButton.hasClass('fa-play')) {
 				audioPlayer.play();
+				wasPlaying = true;
 				playButton.removeClass('fa-play').addClass('fa-pause');
 				gif.removeAttribute('stopped');
 				current.find('track-data').addClass('playing');
 
 			} else {
 				audioPlayer.pause();
+				wasPlaying = false;
 				playButton.removeClass('fa-pause').addClass('fa-play');
 				gif.setAttribute('stopped', '')
 				current.find('track-data').removeClass('playing');
@@ -68,7 +76,7 @@ $('document').ready(function() {
 	};
 
 	playButton.on('click', playOrPause);
-	$('.track-data').on('click', playOrPause);
+	$('.gif-wrap').on('click', playOrPause);
 
 	fwdButton.on('click', function() {
 		var nextTrack = (currentTrack < 8) ? currentTrack + 1 : currentTrack;
@@ -86,10 +94,19 @@ $('document').ready(function() {
 		}
 	});
 
+	var goToTrack = function() {
+		var toTrack = parseInt($(this).attr("data-to-track"));
+		currentTrack = toTrack;
+		updatePlayerState();
+	};
+
+	$('.track-thumbs img').on('click', goToTrack);
+
 	var updatePlayerState = function() {
 
 		if(typeof audioPlayer !== "undefined" && audioPlayer._isPlaying) {
 			playOrPause();
+			wasPlaying = true;
 		}
 
 		backButton.toggleClass('disabled', currentTrack === 1);
@@ -97,13 +114,17 @@ $('document').ready(function() {
 		tracksContent.removeClass().addClass('track-'+currentTrack);
 
 		//update current .track node
-		var oldTrack = $('.track.current');
-		oldTrack.removeClass('current');
+		$('.track.current').removeClass('current');
 		var newTrack = $('.track:nth-child('+currentTrack+')');
 		newTrack.addClass('current');
 
+		$('.track-thumbs img').removeClass('current');
+		$('.track-thumbs img:nth-child('+currentTrack+')').addClass('current');
+
 		//update current song title
 		$('.current-track-title').text(tracks[currentTrack-1].title);
+
+		progress.css('width', 0);
 
 		var sId = tracks[currentTrack-1].sId;
 		SC.stream('/tracks/'+sId).then(function(player){
@@ -112,8 +133,16 @@ $('document').ready(function() {
 		  audioPlayer.on('time', timeUpdated);
 		  audioPlayer.on('play-resume', playStart);
 		  audioPlayer.on('pause', paused);
+
+		  if(wasPlaying) {
+		  	playOrPause();
+		  }
 		});
 	};
+
+	$('.soundcloud-link').on('click', function(e) {
+		e.stopPropagation();
+	});
 
 	updatePlayerState();
 	// audio.on('timeupdate', function() {

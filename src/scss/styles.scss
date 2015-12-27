@@ -292,78 +292,39 @@ textarea {
     }
 }
 
-/* colours:
-
-med-navy    #004b87
-dark-navy   #002554
-dark-blue   #0085ca
-med-blue    #00a9e0
-light-blue  #71c5e8
-faded-blue  #b9d9eb
-orange      #f7a800
-
-*/
-
-
-/* ==========================================================================
-   The REAL Styles... not the guy from Teen Wolf
-   ========================================================================== */
-
-// @font-face {
-//   font-family: "Effra Lt";
-//   src: url("../fonts/Effra_Lt.ttf");
-// }
-
-
-// @font-face {
-//   font-family: "Effra Reg";
-//   src: url("../fonts/Effra_Rg.ttf");
-// }
-
-// @font-face {
-//   font-family: "Effra Bold";
-//   src: url("../fonts/Effra_Bd.ttf");
-// }
-
-// @font-face {
-//   font-family: "Effra Med";
-//   src: url("../fonts/Effra_Md.ttf");
-// }
-
-// @font-face {
-//   font-family: "Effra It";
-//   src: url("../fonts/Effra_It.ttf");
-// }
-
 html, body {
-    height: 100%;
     font-size: 16px; /* Set a base size and specify as % elsewhere i.e. 12px = 12/16 = 75% */
 }
 
 body, p, h1, h2, h3, h4, ul, li {
     font-family: 'Poly', serif;
 }
-/* ==========================================================================
-    foundation overrides because you can't always get what you want...
-   ========================================================================== */
 
 header {
 
     background-color: #000;
     padding: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 0;
     color: #fff;
     font-style: italic;
+
+    .header-part {
+        display: inline-block;
+        text-align: center;
+        padding: 0.5em 0;
+        width: 100%;
+
+        &:last-child {
+            padding: 0;
+        }
+    }
 
     h1 {
         display: inline-block;
         font-size: 1em;
         color: #fff;
         font-style: italic;
-        margin: 0 1em 0 0;
-        padding-right: 1em;
-        border-right: 1px solid #fff;
-
+        margin: 0;
     }
 
     a {
@@ -375,18 +336,82 @@ header {
     }
 }
 
-$track-width: 600px;
-
-.tracks-wrap {
+.progress-bar {
     width: 100%;
-    overflow: hidden;
+    background-color: #eee;
+    position: relative;
+    margin-bottom: 1em;
+    height: 10px;
+    box-shadow: 0 0px 18px;
+
+    .progress {
+        width:0;
+        border: none;
+        height: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #bbb;
+        transition: width 500ms linear;
+    }
+}
+
+.track-thumbs {
+    margin: 1em 0;
+    padding: 0 2vw;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+
+    img {
+        width: 10%;
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+        opacity: 0.5;
+        transition: opacity 250ms ease-out;
+        border-radius: 50%;
+
+        &.current {
+            opacity: 1;
+        }
+    }
+}
+
+
+$track-width: 100vw;
+
+body {
+    width: 100%;
 
     #tracks-content {
-        width: 4800px;
+        width: 800vw;
+        position: relative;
         transition: all 600ms cubic-bezier(0.29, 0.49, 0, 1);
 
         &.track-2 {
-            transform: translateX(-$track-width);
+            transform: translateX(-($track-width));
         }
 
         &.track-3 {
@@ -394,23 +419,23 @@ $track-width: 600px;
         }
 
         &.track-4 {
-            transform: translateX(-(4 * $track-width));
+            transform: translateX(-(3 * $track-width));
         }
 
         &.track-5 {
-            transform: translateX(-(5 * $track-width));
+            transform: translateX(-(4 * $track-width));
         }
 
         &.track-6 {
-            transform: translateX(-(6 * $track-width));
+            transform: translateX(-(5 * $track-width));
         }
 
         &.track-7 {
-            transform: translateX(-(7 * $track-width));
+            transform: translateX(-(6 * $track-width));
         }
 
         &.track-8 {
-            transform: translateX(-(8 * $track-width));
+            transform: translateX(-(7 * $track-width));
         }
     }
 }
@@ -420,61 +445,128 @@ h3 {
 }
 
 .track {
-    position: relative;
-    width: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $track-width;
     display: inline-block;
-    // transform: scale(0.5,0.5);
-    // transform-origin: top left;
-    // transition: all 250ms ease-out;
+    vertical-align:top;
+    
+    &:nth-child(2) {
+        transform: translateX($track-width);
+    }
 
-    &.playing {
-        transform: scale(1,1)
+    &:nth-child(3) {
+        transform: translateX(2 * $track-width);
+    }
+
+    &:nth-child(4) {
+        transform: translateX(3 * $track-width);
+    }
+
+    &:nth-child(5) {
+        transform: translateX(4 * $track-width);
+    }
+
+    &:nth-child(6) {
+        transform: translateX(5 * $track-width);
+    }
+
+    &:nth-child(7) {
+        transform: translateX(6 * $track-width);
+    }
+
+    &:nth-child(8) {
+        transform: translateX(7 * $track-width);
+    }
+
+    .gif-wrap {
+        display:inline-block;
+        position: relative;
+        vertical-align:top;
+        width: 100vw;
+        height: 100vw;
+
+        .soundcloud-link {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
     }
 
     .track-data {
-        position: absolute;
-        background-color: rgba(0,0,0,0.5);
-        color: #fff;
-        width: 500px;
-        height: 100%;
-        top: 0;
-        left: 0;
-        transition: 200ms all cubic-bezier(0.29, 0.49, 0, 1);
+        width: 100vw;
+        margin: 0 2vw;
+        display: inline-block;
+        vertical-align: top;
+        opacity: 0;
+        transform: translateY(40px);
+        color: #666;
+        font-style: italic;
+        transition: 1000ms all cubic-bezier(0.29, 0.49, 0, 1);
 
         .track-data-items {
-            transition: 200ms all cubic-bezier(0.29, 0.49, 0, 1);
-            padding-top: 430px;
-            padding-left: 20px;
+
+            padding: 1em 0;
 
             h3 {
-                color: #fff;
-                transition: 200ms all cubic-bezier(0.29, 0.49, 0, 1);
+                color: #666;
+                margin: 0;
+                line-height: 1;
+            }
+
+            p.track-time {
+                margin-top: 0;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+
+                li {
+                    list-style-type: none;
+                    margin-bottom: 0.5em;
+                }
             }
         }
 
-        .soundcloud-logo {
-            width: 104px;
-            height: 16px;
-            background: transparent url(../img/soundcloud_logo_white.png) no-repeat top left;
+    }
+
+    &.current {
+        .track-data {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    header {
+        .header-part {
+            width: 32.9%;
+            border-right: 1px solid #ccc;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    .track {
+        .gif-wrap {
+            margin-left: 2vw;
+            width: 64vw;
+            height: 64vw;
         }
 
-        &.playing {
-            background-color: rgba(0,0,0,0);
-            
+        .track-data {
+            width: 30vw;
+            margin-left: 0;
+
             .track-data-items {
-                transform: translateX(500px);
-
-                h3 {
-                    color: #000;
-                }
-            }   
-
-            .soundcloud-logo {
-                background-image: url(../img/soundcloud_logo_black.png);
-            } 
+                padding: 0 2vw;
+            }
         }
-
-
     }
 }
 
