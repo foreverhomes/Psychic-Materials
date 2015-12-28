@@ -37,7 +37,10 @@ gulp.task('styles', function() {
 
 gulp.task('vendor', function() {
 
-  var xgif = gulp.src(['bower_components/x-gif/dist/x-gif.html', 'bower_components/x-gif/dist/x-gif.angular.js'])
+  var xgif = gulp.src('bower_components/x-gif/dist/x-gif.html')
+    .pipe(gulp.dest('dist/assets/js'));
+
+  var webcomponents = gulp.src('bower_components/webcomponentsjs/webcomponents.js')
     .pipe(gulp.dest('dist/assets/js'));
 
   return scripts = gulp.src(mainBowerFiles({ filter: '**/*.js' }))

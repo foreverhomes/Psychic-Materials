@@ -12,6 +12,7 @@
     "detectizr": "~2.2.0",
     "angular": "~1.4.8",
     "x-gif": "~0.1.1",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "webcomponentsjs": "~0.7.20"
   }
 }

@@ -311,11 +311,24 @@ header {
     .header-part {
         display: inline-block;
         text-align: center;
+        position: relative;
         padding: 0.5em 0;
         width: 100%;
 
-        &:last-child {
-            padding: 0;
+        &:nth-child(2) {
+            background-color: #222;
+        }
+
+        .powered-by {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .social-links {
+            display: inline-block;
+            margin: 0 1em;
         }
     }
 
@@ -325,6 +338,7 @@ header {
         color: #fff;
         font-style: italic;
         margin: 0;
+        padding-right: 0.5em;
     }
 
     a {
@@ -357,53 +371,18 @@ header {
 }
 
 .track-thumbs {
-    margin: 1em 0;
-    padding: 0 2vw;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-
-    img {
-        width: 10%;
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
-        opacity: 0.5;
-        transition: opacity 250ms ease-out;
-        border-radius: 50%;
-
-        &.current {
-            opacity: 1;
-        }
-    }
+    display: none;
 }
 
 
 $track-width: 100vw;
 
-body {
+.tracks-content-wrapper {
     width: 100%;
+    margin: 1em auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     #tracks-content {
         width: 800vw;
@@ -500,7 +479,7 @@ h3 {
         display: inline-block;
         vertical-align: top;
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(100px);
         color: #666;
         font-style: italic;
         transition: 1000ms all cubic-bezier(0.29, 0.49, 0, 1);
@@ -540,15 +519,85 @@ h3 {
     }
 }
 
+
+
+        
+
+
 @media only screen and (min-width: 569px) {
     header {
         .header-part {
             width: 32.9%;
             border-right: 1px solid #ccc;
 
+            &:nth-child(2) {
+                background-color: #000;
+            }
+
             &:last-child {
                 border-right: none;
+                padding: 0.5em 0;
+                width: 32%;
             }
+
+            .powered-by {
+                position: relative;
+                left: 0;
+                top: 0;
+                margin-left: 1em;
+                transform: none;
+            }
+        }
+    }
+
+    .track-thumbs {
+        margin: 1em 0;
+        padding: 0 2vw;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+
+        img {
+            width: 10%;
+            -webkit-order: 0;
+            -ms-flex-order: 0;
+            order: 0;
+            -webkit-flex: 0 1 auto;
+            -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+            -webkit-align-self: auto;
+            -ms-flex-item-align: auto;
+            align-self: auto;
+            opacity: 0.5;
+            transition: opacity 250ms ease-out;
+            border-radius: 50%;
+
+            &.current {
+                opacity: 1;
+            }
+        }
+
+    }
+
+    .tracks-content-wrapper {
+
+        #tracks-content {
+            // min-height: 64vw;
         }
     }
 

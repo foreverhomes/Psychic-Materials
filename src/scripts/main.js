@@ -20,15 +20,24 @@ $('document').ready(function() {
 	var wasPlaying = false;
 
 	// construct tracks array from .track nodes
-	$.each($('.track'), function(index, track) {
+	var trackElems = $('.track');
+	var maxTrackHeight = 0;
+	$.each(trackElems, function(index, track) {
+
 		var newTrack = {
 			title: $(track).attr("data-title"),
 			sId: $(track).attr("data-sc-id")
 		}
+
 		tracks.push(newTrack);
 
-		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"))
+		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"));
+		$(this).find('.track-data-items h3').text(newTrack.title);
+
+		maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
 	});
+
+	tracksContent.height(maxTrackHeight);
 
 	var trackEnded = function() {
 		if(currentTrack < 8) {
@@ -142,6 +151,14 @@ $('document').ready(function() {
 
 	$('.soundcloud-link').on('click', function(e) {
 		e.stopPropagation();
+	});
+
+	$(window).resize(function() {
+		$.each(trackElems, function(index, track) {
+			maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
+		});
+
+		tracksContent.height(maxTrackHeight);
 	});
 
 	updatePlayerState();

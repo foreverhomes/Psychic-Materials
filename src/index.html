@@ -6,7 +6,9 @@
     <title>Casey Mecija -- Psychic Materials</title>
     <link rel="stylesheet" href="assets/css/styles.min.css" />
     <link href='https://fonts.googleapis.com/css?family=Poly:400,400italic' rel='stylesheet' type='text/css'>
+    <script src="assets/js/webcomponents.js"></script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+
     <link rel="import" href="assets/js/x-gif.html">
     
   </head>
@@ -15,13 +17,18 @@
     <header>
       <div class="header-part title"><h1>Casey Mecija &mdash; Psychic Materials</h1></div>
       <div class="header-part controls">
-        <a class="fa fa-fast-backward fa-fw back-button disabled"></a>
-        <a class="fa fa-play fa-fw play-button"></a>
-        <a class="fa fa-fast-forward fa-fw fwd-button"></a>
+        
+        <a class="fa fa-fast-backward fa-fw fa-lg back-button disabled"></a>
+        <a class="fa fa-play fa-fw fa-lg play-button"></a>
+        <a class="fa fa-fast-forward fa-fw fa-lg fwd-button"></a>
+        <a href="http://soundcloud.com" target="_blank" class="powered-by"><img src="assets/img/soundcloud-header.png" /></a>
       </div>
       <div class="header-part track-title">
         <!-- <span class="current-track-title"></span> -->
-        <a href="http://soundcloud.com" target="_blank"><img src="assets/img/soundcloud-header.png" /></a>
+        <a>Press</a> :: <a>Shows</a> 
+        <span class="social-links"><a class="fa fa-shopping-cart fa-fw fa-lg" target="_blank" href="http://instagram.com/caseymecija"></a>
+        <a class="fa fa-instagram fa-fw fa-lg" target="_blank" href="http://instagram.com/caseymecija"></a>
+        <a class="fa fa-twitter fa-fw fa-lg" target="_blank" href="http://twitter.com/caseymecija"></a></span>
       </div>
     </header>
 
@@ -40,119 +47,120 @@
         <img src="assets/img/palms-thumb.jpg" data-to-track="8" />
     </div>
 
-    <div id="tracks-content" class="track-1">
-        <div class="track current" data-sc-id="204661121" data-title="This War Is More" data-share-url="https://soundcloud.com/thingschangebutstaycool/neuroplastics">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-                <a class="soundcloud-link" target="_blank"><img src="assets/img/soundcloud_logo_white.png" /></a>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>This War is More</h3>
-                    <p class="track-time">3:25<p>
-                    <ul>
-                        <li><strong>C. Mecija:</strong> vocals, guitar, keyboard</li>
-                        <li><strong>K. Adams:</strong> keyboard, percussion</li>
-                        <li><strong>J. DeButte:</strong> guitar, sounds</li>
-                        <li><strong>H. Kirby:</strong> bass</li>
-                        <li><strong>M. Ramagnano:</strong> keyboard, sounds</li>
-                    </ul>
+    <div class="tracks-content-wrapper">
+        <div id="tracks-content" class="track-1">
+            <div class="track current" data-sc-id="204661121" data-title="This War Is More" data-share-url="https://soundcloud.com/thingschangebutstaycool/neuroplastics">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
+                    <a class="soundcloud-link" target="_blank"><img src="assets/img/soundcloud_logo_white.png" /></a>
+                </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <p class="track-time">3:25<p>
+                        <ul>
+                            <li><strong>C. Mecija:</strong> vocals, guitar, keyboard</li>
+                            <li><strong>K. Adams:</strong> keyboard, percussion</li>
+                            <li><strong>J. DeButte:</strong> guitar, sounds</li>
+                            <li><strong>H. Kirby:</strong> bass</li>
+                            <li><strong>M. Ramagnano:</strong> keyboard, sounds</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="track" data-sc-id="206062720" data-title="Palms Lose" data-share-url="https://soundcloud.com/thingschangebutstaycool/harbours-of-peace">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Palms Lose</h3>
-                    <a class="soundcloud-link" target="_blank"><div class="soundcloud-logo"></div></a>
+            <div class="track" data-sc-id="206062720" data-title="Palms Lose" data-share-url="https://soundcloud.com/thingschangebutstaycool/harbours-of-peace">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <a class="soundcloud-link" target="_blank"><div class="soundcloud-logo"></div></a>
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
 
-        <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Gonna Gun</h3>
-                    <div class="soundcloud-logo" target="_blank"></div>
+            <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <div class="soundcloud-logo" target="_blank"></div>
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
 
-        <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Gonna Gun</h3>
-                    <div class="soundcloud-logo" target="_blank"></div>
+            <div class="track" data-sc-id="70720242" data-title="We Feel The Same">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <div class="soundcloud-logo" target="_blank"></div>
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
 
-        <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Gonna Gun</h3>
-                    <div class="soundcloud-logo" target="_blank"></div>
+            <div class="track" data-sc-id="70720242" data-title="Condo City">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <div class="soundcloud-logo" target="_blank"></div>
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
 
-        <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Gonna Gun</h3>
-                    <div class="soundcloud-logo"></div>
+            <div class="track" data-sc-id="70720242" data-title="Sounds That Mark Our Words">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <div class="soundcloud-logo"></div>
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
 
-        <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Gonna Gun</h3>
-                    <div class="soundcloud-logo"></div>
+            <div class="track" data-sc-id="70720242" data-title="Other Side of Concrete">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <div class="soundcloud-logo"></div>
+                    </div>
+                </div>
+                
             </div>
-            
-        </div>
 
-        <div class="track" data-sc-id="70720242" data-title="Gonna Gun">
-            <div class="gif-wrap">
-                <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
-            </div>
-            <div class="track-data">
-                <div class="track-data-items">
-                    <h3>Gonna Gun</h3>
-                    <div class="soundcloud-logo"></div>
+            <div class="track" data-sc-id="70720242" data-title="Busted Heel">
+                <div class="gif-wrap">
+                    <x-gif src="assets/img/palms_layers_ROUGH.gif" bpm="80" stopped fill></x-gif>
                 </div>
+                <div class="track-data">
+                    <div class="track-data-items">
+                        <h3></h3>
+                        <div class="soundcloud-logo"></div>
+                    </div>
+                </div>
+                
             </div>
-            
         </div>
     </div>
-
 
     <script src="assets/js/vendor.js"></script>
     <script src="assets/js/x-gif.angular.js"></script>
