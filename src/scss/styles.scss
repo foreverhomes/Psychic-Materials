@@ -292,6 +292,14 @@ textarea {
     }
 }
 
+a, a:link, a:visited {
+    color: #fff;
+}
+
+a:hover, a:active {
+    color: coral;
+}
+
 html, body {
     font-size: 16px; /* Set a base size and specify as % elsewhere i.e. 12px = 12/16 = 75% */
 }
@@ -323,7 +331,8 @@ header {
             position: absolute;
             right: 12px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) scale(0.7);
+            transform-origin: 100% 50%;
         }
 
         .social-links {
@@ -354,7 +363,7 @@ header {
     width: 100%;
     background-color: #eee;
     position: relative;
-    margin-bottom: 1em;
+    margin-bottom: 0;
     height: 10px;
     box-shadow: 0 0px 18px;
 
@@ -368,6 +377,17 @@ header {
         background-color: #bbb;
         transition: width 500ms linear;
     }
+
+    .scrubber {
+        width:3px;
+        height: 10px;
+        background-color: #000;
+        position: absolute;
+        top:0;
+        left: 0;
+        transform: translateX(2px);
+        transition: all 500ms linear;
+    }
 }
 
 .track-thumbs {
@@ -379,7 +399,7 @@ $track-width: 100vw;
 
 .tracks-content-wrapper {
     width: 100%;
-    margin: 1em auto;
+    margin: 0 auto;
     overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -468,8 +488,9 @@ h3 {
 
         .soundcloud-link {
             position: absolute;
-            bottom: 10px;
+            bottom: -20px;
             right: 10px;
+            z-index: 99;
         }
     }
 
@@ -545,7 +566,11 @@ h3 {
                 left: 0;
                 top: 0;
                 margin-left: 1em;
-                transform: none;
+
+
+                img {
+                    transform: scale(0.8);
+                }
             }
         }
     }
@@ -595,7 +620,7 @@ h3 {
     }
 
     .tracks-content-wrapper {
-
+        margin: 2em auto;
         #tracks-content {
             // min-height: 64vw;
         }
