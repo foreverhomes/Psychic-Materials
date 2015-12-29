@@ -308,6 +308,14 @@ body, p, h1, h2, h3, h4, ul, li {
     font-family: 'Poly', serif;
 }
 
+.header-wrapper,
+.track-thumbs,
+.tracks-content-wrapper {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 header {
 
     background-color: #000;
@@ -395,46 +403,47 @@ header {
 }
 
 
-$track-width: 100vw;
+$track-width: 100%;
 
 .tracks-content-wrapper {
     width: 100%;
     margin: 0 auto;
     overflow-x: hidden;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
 
     #tracks-content {
-        width: 800vw;
+        width: 800%;
         position: relative;
+        overflow: hidden;
         transition: all 600ms cubic-bezier(0.29, 0.49, 0, 1);
 
         &.track-2 {
-            transform: translateX(-($track-width));
+            transform: translateX(-($track-width/8));
         }
 
         &.track-3 {
-            transform: translateX(-(2 * $track-width));
+            transform: translateX(-(2 * ($track-width/8)));
         }
 
         &.track-4 {
-            transform: translateX(-(3 * $track-width));
+            transform: translateX(-(3 * ($track-width/8)));
         }
 
         &.track-5 {
-            transform: translateX(-(4 * $track-width));
+            transform: translateX(-(4 * ($track-width/8)));
         }
 
         &.track-6 {
-            transform: translateX(-(5 * $track-width));
+            transform: translateX(-(5 * ($track-width/8)));
         }
 
         &.track-7 {
-            transform: translateX(-(6 * $track-width));
+            transform: translateX(-(6 * ($track-width/8)));
         }
 
         &.track-8 {
-            transform: translateX(-(7 * $track-width));
+            transform: translateX(-(7 * ($track-width/8)));
         }
     }
 }
@@ -443,13 +452,38 @@ h3 {
     font-style: italic;
 }
 
+x-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .track {
     position: absolute;
     top: 0;
     left: 0;
-    width: $track-width;
+    width: $track-width/8;
     display: inline-block;
     vertical-align:top;
+
+    .gif-wrap {
+        display:inline-block;
+        position: relative;
+        vertical-align:top;
+        width: 100%;
+
+        img.gif-placeholder {
+            width: 100%;
+            visibility: hidden;
+        }
+
+        .soundcloud-link {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            z-index: 99;
+        }
+    }
     
     &:nth-child(2) {
         transform: translateX($track-width);
@@ -479,24 +513,9 @@ h3 {
         transform: translateX(7 * $track-width);
     }
 
-    .gif-wrap {
-        display:inline-block;
-        position: relative;
-        vertical-align:top;
-        width: 100vw;
-        height: 100vw;
-
-        .soundcloud-link {
-            position: absolute;
-            bottom: -20px;
-            right: 10px;
-            z-index: 99;
-        }
-    }
-
     .track-data {
-        width: 100vw;
-        margin: 0 2vw;
+        width: 100%;
+        margin: 0 2em;
         display: inline-block;
         vertical-align: top;
         opacity: 0;
@@ -576,8 +595,8 @@ h3 {
     }
 
     .track-thumbs {
-        margin: 1em 0;
-        padding: 0 2vw;
+        margin: 1em auto;
+        padding: 0 1em;
         display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
@@ -608,7 +627,7 @@ h3 {
             -webkit-align-self: auto;
             -ms-flex-item-align: auto;
             align-self: auto;
-            opacity: 0.5;
+            opacity: 0.3;
             transition: opacity 250ms ease-out;
             border-radius: 50%;
 
@@ -627,18 +646,17 @@ h3 {
     }
 
     .track {
+        padding: 0 1em;
         .gif-wrap {
-            margin-left: 2vw;
-            width: 64vw;
-            height: 64vw;
+            width: 60%;
         }
 
         .track-data {
-            width: 30vw;
-            margin-left: 0;
+            width: 36%;
+            margin: 0;
 
             .track-data-items {
-                padding: 0 2vw;
+                padding: 0 1em;
             }
         }
     }

@@ -34,7 +34,10 @@ $('document').ready(function() {
 		};
 
 		tracks.push(newTrack);
-
+		// var gWrap = $(this).find('.gif-wrap')
+		// var img = $(this).find('.gif-placeholder');
+		// var gHeight = (img.width()/gWrap.width()) * img.height();
+		// gWrap.css('height', gHeight+"px");
 		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"));
 		$(this).find('.track-data-items h3').text(newTrack.title);
 
@@ -84,25 +87,30 @@ $('document').ready(function() {
 		} 
 	};
 
-	var play = function() {
+	var play = function(willRestart) {
 		console.log('play');
 		var current = $('.current');
 		var gif = current.find('x-gif')[0];
-		audioPlayer.play();
-		wasPlaying = true;
 		playButton.removeClass('fa-play').addClass('fa-pause');
 		gif.removeAttribute('stopped');
 		current.find('track-data').addClass('playing');
+
+		if(willRestart) {
+			audioPlayer.seek(0);
+		}
+		audioPlayer.play();
+		wasPlaying = true;		
 	};
 
 	var pause = function() {
 		var current = $('.current');
 		var gif = current.find('x-gif')[0];
-		audioPlayer.pause();
-		wasPlaying = false;
 		playButton.removeClass('fa-pause').addClass('fa-play');
 		gif.setAttribute('stopped', '')
 		current.find('track-data').removeClass('playing');
+
+		audioPlayer.pause();
+		wasPlaying = false;
 	}
 
 	playButton.on('click', playOrPause);
@@ -127,6 +135,11 @@ $('document').ready(function() {
 	var goToTrack = function() {
 		var toTrack = parseInt($(this).attr("data-to-track"));
 		currentTrack = toTrack;
+		
+		if(wasPlaying) {
+			pause();
+		}
+
 		updatePlayerState();
 	};
 
@@ -164,7 +177,7 @@ $('document').ready(function() {
 
 		  if(wasPlaying) {
 		  	setTimeout(function() {
-		  		play();
+		  		play(true);
 		  	},200);
 		  	
 		  }
