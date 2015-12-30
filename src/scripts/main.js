@@ -34,10 +34,6 @@ $('document').ready(function() {
 		};
 
 		tracks.push(newTrack);
-		// var gWrap = $(this).find('.gif-wrap')
-		// var img = $(this).find('.gif-placeholder');
-		// var gHeight = (img.width()/gWrap.width()) * img.height();
-		// gWrap.css('height', gHeight+"px");
 		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"));
 		$(this).find('.track-data-items h3').text(newTrack.title);
 
@@ -72,13 +68,7 @@ $('document').ready(function() {
 	};
 
 	var playOrPause = function() {
-
-		
-
 		if(typeof audioPlayer !== "undefined") {
-
-			
-
 			if(playButton.hasClass('fa-play')) {
 				play();
 			} else {
@@ -102,7 +92,7 @@ $('document').ready(function() {
 		wasPlaying = true;		
 	};
 
-	var pause = function() {
+	var pause = function(reset) {
 		var current = $('.current');
 		var gif = current.find('x-gif')[0];
 		playButton.removeClass('fa-pause').addClass('fa-play');
@@ -110,7 +100,9 @@ $('document').ready(function() {
 		current.find('track-data').removeClass('playing');
 
 		audioPlayer.pause();
-		wasPlaying = false;
+		if(reset) {
+			wasPlaying = false;
+		}
 	}
 
 	playButton.on('click', playOrPause);
@@ -120,6 +112,7 @@ $('document').ready(function() {
 		var nextTrack = (currentTrack < 8) ? currentTrack + 1 : currentTrack;
 		if(nextTrack !== currentTrack) {
 			currentTrack = nextTrack;
+			console.log('nextButton:updatePlayerState()');
 			updatePlayerState();
 		}
 	});
@@ -128,6 +121,7 @@ $('document').ready(function() {
 		var nextTrack = (currentTrack > 1) ? currentTrack - 1 : currentTrack;
 		if(nextTrack !== currentTrack) {
 			currentTrack = nextTrack;
+			console.log('backButton:updatePlayerState()');
 			updatePlayerState();
 		}
 	});
@@ -137,9 +131,9 @@ $('document').ready(function() {
 		currentTrack = toTrack;
 		
 		if(wasPlaying) {
-			pause();
+			pause(false);
 		}
-
+		console.log('goToTrack:updatePlayerState()');
 		updatePlayerState();
 	};
 
@@ -148,8 +142,7 @@ $('document').ready(function() {
 	var updatePlayerState = function() {
 		console.log('updating state');
 		if(typeof audioPlayer !== "undefined" && audioPlayer._isPlaying) {
-			playOrPause();
-			wasPlaying = true;
+			pause(false);
 		}
 
 		backButton.toggleClass('disabled', currentTrack === 1);

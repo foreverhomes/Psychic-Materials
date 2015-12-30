@@ -559,6 +559,20 @@ x-gif {
     }
 }
 
+footer {
+    background-color: #666;
+    color: #fff;
+    margin-top: 8em;
+    font-style: italic;
+    font-size: 80%;
+    padding: 2em 0;
+
+    .footer-content {
+        padding: 0 1em;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+}
 
 
         
