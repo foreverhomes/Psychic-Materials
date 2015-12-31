@@ -7,8 +7,9 @@ $('document').ready(function() {
 	var audio = $('audio');
 	var player = audio[0];
 	var currentTrack = 1;
-	var startX;
+	var wasPlaying = false;
 	var updateScrub = true;
+	var tracks = [];
 
 	var playButton = $('.play-button');
 	var fwdButton = $('.fwd-button');
@@ -16,11 +17,8 @@ $('document').ready(function() {
 	var tracksContent = $('#tracks-content');
 	var progress = $('.progress');
 	var scrubber = $('.scrubber');
-	var tracks = [];
 
-	var wasPlaying = false;
-
-	// construct tracks array from .track nodes
+	// construct tracks array from .track nodes and render finished 
 	var trackElems = $('.track');
 	var maxTrackHeight = 0;
 	$.each(trackElems, function(index, track) {
@@ -37,35 +35,11 @@ $('document').ready(function() {
 		maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
 	});
 
+	// We give #tracks-content enough height to display all track content.
+	// since .track is position: absolute; need to force the container to have a 
+	// height. 
+
 	tracksContent.height(maxTrackHeight);
-
-	var trackEnded = function() {
-		if(currentTrack < 8) {
-			wasPlaying = true;
-			fwdButton.trigger('click');
-		}
-	};
-
-	var timeUpdated = function() {
-		var wWidth = $(window).width();
-		var pct = player.currentTime/player.duration;
-		var newLeft = Math.round(wWidth * pct);
-
-		progress.css('width', newLeft+'px');
-
-		// if(updateScrub) {
-		// 	scrubber.css('left', newLeft+'px');
-		// }	
-		
-	};
-
-	var trackPaused = function() {
-		wasPlaying = false;
-	};
-
-	var playStart = function() {
-		wasPlaying = true;
-	};
 
 	var playOrPause = function() {
 		if(playButton.hasClass('fa-play')) {
@@ -76,7 +50,6 @@ $('document').ready(function() {
 	};
 
 	var play = function(willRestart) {
-		console.log('play');
 		var current = $('.current');
 		var gif = current.find('x-gif')[0];
 		playButton.removeClass('fa-play').addClass('fa-pause');
@@ -98,28 +71,7 @@ $('document').ready(function() {
 		if(reset) {
 			wasPlaying = false;
 		}
-	}
-
-	playButton.on('click', playOrPause);
-	$('.gif-wrap').on('click', playOrPause);
-
-	fwdButton.on('click', function() {
-		var nextTrack = (currentTrack < 8) ? currentTrack + 1 : currentTrack;
-		if(nextTrack !== currentTrack) {
-			currentTrack = nextTrack;
-			console.log('nextButton:updatePlayerState()');
-			updatePlayerState();
-		}
-	});
-
-	backButton.on('click', function() { 
-		var nextTrack = (currentTrack > 1) ? currentTrack - 1 : currentTrack;
-		if(nextTrack !== currentTrack) {
-			currentTrack = nextTrack;
-			console.log('backButton:updatePlayerState()');
-			updatePlayerState();
-		}
-	});
+	};
 
 	var goToTrack = function() {
 		var toTrack = parseInt($(this).attr("data-to-track"));
@@ -128,14 +80,38 @@ $('document').ready(function() {
 		if(wasPlaying) {
 			pause(false);
 		}
-		console.log('goToTrack:updatePlayerState()');
+		// console.log('goToTrack:updatePlayerState()');
 		updatePlayerState();
 	};
 
+	/* Player controls event binding */
+
+	playButton.on('click', playOrPause);
+	$('.gif-wrap').on('click', playOrPause);
 	$('.track-thumbs img').on('click', goToTrack);
 
+	fwdButton.on('click', function() {
+		var nextTrack = (currentTrack < 8) ? currentTrack + 1 : currentTrack;
+		if(nextTrack !== currentTrack) {
+			currentTrack = nextTrack;
+			// console.log('nextButton:updatePlayerState()');
+			updatePlayerState();
+		}
+	});
+
+	backButton.on('click', function() { 
+		var nextTrack = (currentTrack > 1) ? currentTrack - 1 : currentTrack;
+		if(nextTrack !== currentTrack) {
+			currentTrack = nextTrack;
+			// console.log('backButton:updatePlayerState()');
+			updatePlayerState();
+		}
+	});
+
+	/* Updates the player state across all levels when a new track is loaded */
+
 	var updatePlayerState = function() {
-		console.log('updating state');
+		// console.log('updating state');
 		if(wasPlaying) {
 			pause(false);
 		}
@@ -165,24 +141,10 @@ $('document').ready(function() {
 		if(wasPlaying) {
 		  	setTimeout(function() {
 		  		play(true);
-		  	},200);
-		  	
+		  	},200);  	
 		}
 
 	};
-
-
-	$('.soundcloud-link').on('click', function(e) {
-		e.stopPropagation();
-	});
-
-	$(window).resize(function() {
-		$.each(trackElems, function(index, track) {
-			maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
-		});
-
-		tracksContent.height(maxTrackHeight);
-	});
 	
 	goToTrackPct = function(pct) {
 
@@ -192,9 +154,35 @@ $('document').ready(function() {
 		
 	};
 
-	audio.on('canplay', function() {
-		console.log('can play');
-	});
+	/* Audio event handlers and binding */
+
+	var trackPaused = function() {
+		wasPlaying = false;
+	};
+
+	var playStart = function() {
+		wasPlaying = true;
+	};
+
+	var trackEnded = function() {
+		if(currentTrack < 8) {
+			wasPlaying = true;
+			fwdButton.trigger('click');
+		}
+	};
+
+	var timeUpdated = function() {
+		var wWidth = $(window).width();
+		var pct = player.currentTime/player.duration;
+		var newLeft = Math.round(wWidth * pct);
+
+		progress.css('width', newLeft+'px');
+
+		// if(updateScrub) {
+		// 	scrubber.css('left', newLeft+'px');
+		// }	
+		
+	};
 
 	audio.on('ended', trackEnded);
 	audio.on('timeupdate', timeUpdated);
@@ -202,6 +190,8 @@ $('document').ready(function() {
 	audio.on('pause', trackPaused);
 
 	updatePlayerState();
+
+	/* handle swipe navigation for mobile/touch-enabled navigation between tracks */
 
 	var startX;
 	var moveX;
@@ -238,6 +228,23 @@ $('document').ready(function() {
 	trackElems.on('touchstart', trackTouchStart);
 	trackElems.on('touchmove', trackTouchMove);
 	trackElems.on('touchend', trackTouchEnd);
+
+
+	/* General default behaviour overrides, decorators, etc. */
+
+	$('.soundcloud-link').on('click', function(e) {
+		e.stopPropagation();
+	});
+
+	$(window).resize(function() {
+		$.each(trackElems, function(index, track) {
+			maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
+		});
+
+		tracksContent.height(maxTrackHeight);
+	});
+
+	/* Scrubber WIP */
 
 	// var scrubTouchStart = function(e) {
 	// 	console.log(e);
