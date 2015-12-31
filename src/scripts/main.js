@@ -32,7 +32,7 @@ $('document').ready(function() {
 		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"));
 		$(this).find('.track-data-items h3').text(newTrack.title);
 
-		maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
+		maxTrackHeight = Math.max(maxTrackHeight,$(this).height()+30);
 	});
 
 	// We give #tracks-content enough height to display all track content.
