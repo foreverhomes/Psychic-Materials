@@ -203,6 +203,42 @@ $('document').ready(function() {
 
 	updatePlayerState();
 
+	var startX;
+	var moveX;
+	var isTouchMoving = false;
+	var trackTouchStart = function(e) {
+		startX = e.originalEvent.touches[0].pageX;
+		isTouchMoving = true;
+	};
+
+	var trackTouchMove = function(e) {
+		moveX = parseInt(e.originalEvent.touches[0].pageX - startX);
+
+		if(isTouchMoving && !isNaN(moveX)) {
+			tracksContent.css('left', moveX + 'px');
+		}
+		
+	};
+
+	var trackTouchEnd = function(e) {
+		isTouchMoving = false;
+		startX = undefined;
+		tracksContent.css('left', 0);
+		if (moveX > 100) {
+			console.log('trigger back');
+			backButton.trigger('click');
+		} else if (moveX < -100 ) {
+			console.log('trigger foward')
+			fwdButton.trigger('click');
+		} 
+
+		moveX = 0;
+	};
+
+	trackElems.on('touchstart', trackTouchStart);
+	trackElems.on('touchmove', trackTouchMove);
+	trackElems.on('touchend', trackTouchEnd);
+
 	// var scrubTouchStart = function(e) {
 	// 	console.log(e);
 	// 	startX = e.pageX;
