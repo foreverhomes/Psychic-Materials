@@ -4,11 +4,8 @@ $('document').ready(function() {
 
 	$(document).foundation();
 
-	SC.initialize({
-	  client_id: '1f33d1f52f43a1cf07a274370125f371'
-	});
-
-	var audioPlayer;
+	var audio = $('audio');
+	var player = audio[0];
 	var currentTrack = 1;
 	var startX;
 	var updateScrub = true;
@@ -51,8 +48,7 @@ $('document').ready(function() {
 
 	var timeUpdated = function() {
 		var wWidth = $(window).width();
-		var currentTime = audioPlayer.currentTime();
-		var pct = currentTime/audioPlayer.streamInfo.duration;
+		var pct = player.currentTime/player.duration;
 		var newLeft = Math.round(wWidth * pct);
 
 		progress.css('width', newLeft+'px');
@@ -63,18 +59,20 @@ $('document').ready(function() {
 		
 	};
 
+	var trackPaused = function() {
+		wasPlaying = false;
+	};
+
 	var playStart = function() {
 		wasPlaying = true;
 	};
 
 	var playOrPause = function() {
-		if(typeof audioPlayer !== "undefined") {
-			if(playButton.hasClass('fa-play')) {
-				play();
-			} else {
-				pause();
-			}
-		} 
+		if(playButton.hasClass('fa-play')) {
+			play();
+		} else {
+			pause(true);
+		}
 	};
 
 	var play = function(willRestart) {
@@ -85,10 +83,7 @@ $('document').ready(function() {
 		gif.removeAttribute('stopped');
 		current.find('track-data').addClass('playing');
 
-		if(willRestart) {
-			audioPlayer.seek(0);
-		}
-		audioPlayer.play();
+		player.play();
 		wasPlaying = true;		
 	};
 
@@ -99,7 +94,7 @@ $('document').ready(function() {
 		gif.setAttribute('stopped', '')
 		current.find('track-data').removeClass('playing');
 
-		audioPlayer.pause();
+		player.pause();
 		if(reset) {
 			wasPlaying = false;
 		}
@@ -141,7 +136,7 @@ $('document').ready(function() {
 
 	var updatePlayerState = function() {
 		console.log('updating state');
-		if(typeof audioPlayer !== "undefined" && audioPlayer._isPlaying) {
+		if(wasPlaying) {
 			pause(false);
 		}
 
@@ -163,31 +158,19 @@ $('document').ready(function() {
 		progress.css('width', 0);
 
 		var sId = tracks[currentTrack-1].sId;
-		SC.stream('/tracks/'+sId).then(function(player){
-		  
+		audio.empty();
+		audio.append ('<source src="https://api.soundcloud.com/tracks/'+sId+'/stream?client_id=1f33d1f52f43a1cf07a274370125f371" type="audio/mpeg">');
+		player.load();	
 
-		  audioPlayer = player;
-
-		  if(wasPlaying) {
+		if(wasPlaying) {
 		  	setTimeout(function() {
 		  		play(true);
 		  	},200);
 		  	
-		  }
+		}
 
-		  audioPlayer.on('finish', trackEnded);
-		  audioPlayer.on('time', timeUpdated);
-		  audioPlayer.on('play-resume', playStart);
-		  audioPlayer.on('pause', paused);
-
-		  
-		  
-		});
 	};
 
-	var test = function() {
-		console.log('wasPlaying', wasPlaying);
-	}
 
 	$('.soundcloud-link').on('click', function(e) {
 		e.stopPropagation();
@@ -200,17 +183,25 @@ $('document').ready(function() {
 
 		tracksContent.height(maxTrackHeight);
 	});
-
-	updatePlayerState();
 	
 	goToTrackPct = function(pct) {
-		if(typeof audioPlayer !== "undefined") {
 
-			var time = (audioPlayer.streamInfo.duration * pct) / 100
+		var time = (player.duration * pct) / 100
 
-			audioPlayer.seek(time);
-		}
+		player.currentTime = time;
+		
 	};
+
+	audio.on('canplay', function() {
+		console.log('can play');
+	});
+
+	audio.on('ended', trackEnded);
+	audio.on('timeupdate', timeUpdated);
+	audio.on('play', playStart);
+	audio.on('pause', trackPaused);
+
+	updatePlayerState();
 
 	// var scrubTouchStart = function(e) {
 	// 	console.log(e);
