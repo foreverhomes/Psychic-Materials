@@ -318,17 +318,66 @@ body, p {
     font-family: 'Poly', serif;
 }
 
+p.special{
+    margin-top: 2em;
+    &::first-letter {
+        font-family: 'Medio', serif;
+        font-size: 200%;
+        vertical-align: baseline;
+        position: relative;
+        top: -0.4em;
+        line-height: 20px;
+    }
+}
+
 h1, h2, h3, h4, ul, li {
     font-family: 'Medio', serif;
     text-transform: uppercase;
 }
 
+.internal {
+    // .header-wrapper,
+    // .track-thumbs,
+    // .tracks-content-wrapper,
+    // .main-content,
+    // footer .footer-content {
+    //     max-width: 800px;
+    //     margin-left: auto;
+    //     margin-right: auto;
+    // }
+
+    h4 {
+        margin-top: 1.5em;
+    }
+}
+
 .header-wrapper,
 .track-thumbs,
-.tracks-content-wrapper {
+.tracks-content-wrapper,
+.main-content {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.main-content {
+    margin-top: 2em;
+    .content {
+        padding: 0 1em;
+
+        h4 {
+            font-size: 110%;
+            margin-bottom: 0;
+        }
+    }
+    .images {
+        text-align: center;
+
+        img {
+            margin-bottom: 1em;
+            width: 100%;
+        }
+    }
 }
 
 header {
@@ -382,6 +431,25 @@ header {
         &.disabled {
             opacity: 0.5;
         }
+    }
+}
+
+.internal {
+    header {
+        .header-part {
+            h1 { 
+                font-size: 110%;
+            }
+
+            a {
+                font-size: 110%;
+            }
+        }
+        
+    }
+
+    .spacing {
+        display: none;
     }
 }
 
@@ -596,36 +664,6 @@ footer {
 }
 
 
-.flex-container {
-    
-    }
-
-.flex-item:nth-child(1) {
-    
-    }
-
-.flex-item:nth-child(2) {
-    
-    }
-
-.flex-item:nth-child(3) {
-    
-    }
-
-/*
-    Legacy Firefox implementation treats all flex containers
-    as inline-block elements.
-*/
-
-@-moz-document url-prefix() {
-.flex-container {
-    width: 100%;
-    -moz-box-sizing: border-box;
-    }
-
-}
-
-
 @media only screen and (min-width: 569px) {
     header {
         .header-wrapper {
@@ -772,6 +810,42 @@ footer {
                 img {
                     transform: scale(0.8);
                 }
+            }
+        }
+    }
+
+    .internal {
+        header {
+            .header-part {
+                a {
+                    font-size: 110%;
+                    line-height: 120%;
+                }
+
+                &:nth-child(1) {
+                    text-align: left;
+                }
+
+                &:nth-child(2) {
+                    text-align: right;
+                }
+            }
+        }
+
+        .spacing {
+            display: block;
+        }
+
+        .main-content {
+            margin-top: 2em;
+            .content {
+                width: 70%;
+                display: inline-block;
+            }
+            .images {
+                width: 29%;
+                vertical-align: top;
+                display: inline-block;
             }
         }
     }
