@@ -32,7 +32,7 @@ $('document').ready(function() {
 		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"));
 		$(this).find('.track-data-items h3').text(newTrack.title);
 
-		maxTrackHeight = Math.max(maxTrackHeight,$(this).height()+30);
+		maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
 	});
 
 	// We give #tracks-content enough height to display all track content.
@@ -135,8 +135,8 @@ $('document').ready(function() {
 
 		var sId = tracks[currentTrack-1].sId;
 		audio.empty();
-		audio.append ('<source src="https://api.soundcloud.com/tracks/'+sId+'/stream?client_id=1f33d1f52f43a1cf07a274370125f371" type="audio/mpeg">');
-		player.load();	
+		// audio.append ('<source src="https://api.soundcloud.com/tracks/'+sId+'/stream?client_id=1f33d1f52f43a1cf07a274370125f371" type="audio/mpeg">');
+		// player.load();	
 
 		if(wasPlaying) {
 		  	setTimeout(function() {
@@ -198,6 +198,7 @@ $('document').ready(function() {
 	var isTouchMoving = false;
 	var trackTouchStart = function(e) {
 		startX = e.originalEvent.touches[0].pageX;
+		tracksContent.addClass('touch-moving');
 		isTouchMoving = true;
 	};
 
@@ -211,6 +212,7 @@ $('document').ready(function() {
 	};
 
 	var trackTouchEnd = function(e) {
+		tracksContent.removeClass('touch-moving');
 		isTouchMoving = false;
 		startX = undefined;
 		tracksContent.css('left', 0);
@@ -225,9 +227,9 @@ $('document').ready(function() {
 		moveX = 0;
 	};
 
-	trackElems.on('touchstart', trackTouchStart);
-	trackElems.on('touchmove', trackTouchMove);
-	trackElems.on('touchend', trackTouchEnd);
+	// trackElems.on('touchstart', trackTouchStart);
+	// trackElems.on('touchmove', trackTouchMove);
+	// trackElems.on('touchend', trackTouchEnd);
 
 
 	/* General default behaviour overrides, decorators, etc. */

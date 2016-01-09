@@ -1,7 +1,7 @@
 {
-  "name": "MiniMedSim",
+  "name": "Psychic Materials Web Player",
   "version": "0.0.1",
-  "description": "MiniMedSim",
+  "description": "Web Player for Casey Mecija's `Psychic Materials`",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
