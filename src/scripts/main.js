@@ -32,6 +32,9 @@ $('document').ready(function() {
 		$(this).find('.soundcloud-link').attr("href", $(track).attr("data-share-url"));
 		$(this).find('.track-data-items h3').text(newTrack.title);
 
+		// var gif = $(this).find('img.gif-placeholder')[0];
+		// $(this).find('.gif-wrap').append('<x-gif src="'+gif.src+'" stopped fill></x-gif>');
+
 		maxTrackHeight = Math.max(maxTrackHeight,$(this).height());
 	});
 
@@ -135,8 +138,8 @@ $('document').ready(function() {
 
 		var sId = tracks[currentTrack-1].sId;
 		audio.empty();
-		// audio.append ('<source src="https://api.soundcloud.com/tracks/'+sId+'/stream?client_id=1f33d1f52f43a1cf07a274370125f371" type="audio/mpeg">');
-		// player.load();	
+		audio.append ('<source src="https://api.soundcloud.com/tracks/'+sId+'/stream?client_id=1f33d1f52f43a1cf07a274370125f371" type="audio/mpeg">');
+		player.load();	
 
 		if(wasPlaying) {
 		  	setTimeout(function() {
@@ -234,7 +237,7 @@ $('document').ready(function() {
 
 	/* General default behaviour overrides, decorators, etc. */
 
-	$('.soundcloud-link').on('click', function(e) {
+	$('.soundcloud-link, .buy-track-link, .buy-album-link').on('click', function(e) {
 		e.stopPropagation();
 	});
 
