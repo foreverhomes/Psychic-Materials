@@ -105,7 +105,9 @@ gulp.task('default', ['clean'], function() {
     gulp.start('styles','vendor', 'scripts', 'html', 'copy');
 });
 
-
+gulp.task('test', function() {
+  return true;
+});
 
 gulp.task('watch', function() {
 
