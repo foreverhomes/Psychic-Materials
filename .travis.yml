@@ -1,4 +1,4 @@
 before_script:
   - npm install -g gulp
-  - npm install --save-dev gulp
+  - npm install && bower install
 script: gulp
