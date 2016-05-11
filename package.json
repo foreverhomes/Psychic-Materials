@@ -1,5 +1,5 @@
 {
-  "name": "Psychic Materials Web Player",
+  "name": "psychic materials web player",
   "version": "0.0.1",
   "description": "Web Player for Casey Mecija's `Psychic Materials`",
   "main": "gulpfile.js",
